@@ -5,6 +5,17 @@ A full-stack bakery web app: browse cakes, cookies and pastries, customize a cak
 
 **Stack:** Django 5 (JSON API, session auth) · SQLite · HTML + Tailwind (CDN) + vanilla JavaScript
 
+![Homepage](screenshots/home.png)
+
+<p>
+  <img src="screenshots/catalogue.png" alt="Catalogue" width="49%">
+  <img src="screenshots/cart.png" alt="Cart" width="49%">
+</p>
+<p>
+  <img src="screenshots/checkout.png" alt="Checkout" width="49%">
+  <img src="screenshots/order.png" alt="Order confirmation" width="49%">
+</p>
+
 ## Features
 - Product catalogue with category filter and search
 - Cake customization (size surcharge, message on cake or gift tag, per-item notes)

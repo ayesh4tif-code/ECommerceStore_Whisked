@@ -417,7 +417,7 @@
                 </div>
             </div>
 
-            <div>
+            <div id="cust-name-wrap">
                 <label class="block font-semibold text-[#9C7183] dark:text-[#F2DCE3]/80 mb-2 text-xs sm:text-sm">Your Name</label>
                 <input type="text" id="cust-name" maxlength="150" placeholder="e.g., Sara Khan" class="w-full bg-[#FBE0E0]/30 dark:bg-[#221419] border border-[#FBE0E0] dark:border-[#563542] text-[#5C3347] dark:text-[#F2DCE3] px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-[#D5306D]">
             </div>
@@ -874,6 +874,11 @@
             const grid = document.getElementById('product-grid');
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
 
+            if (products.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#D5306D] text-sm">The catalogue is empty. Run <code>python manage.py seed_products</code> from the backend folder, then refresh.</div>`;
+                return;
+            }
+
             const filtered = products.filter(p => {
                 const matchesCategory = activeCategory === 'All' || p.category === activeCategory || (activeCategory === 'Pastries' && p.category === 'Cupcakes');
                 const matchesSearch = p.title.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery);
@@ -1056,6 +1061,8 @@
                 return;
             }
             toggleCart();
+            // Signed-in customers are identified by their account, so only guests need to type a name.
+            document.getElementById('cust-name-wrap').classList.toggle('hidden', Boolean(currentUser));
             const modal = document.getElementById('checkout-modal');
             const backdrop = document.getElementById('checkout-modal-backdrop');
             modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
